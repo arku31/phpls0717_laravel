@@ -32,13 +32,20 @@ class GoodController extends Controller
     {
         $this->validate($request, [
            'name' => 'required',
-           'price' => 'numeric|required'
+           'price' => 'numeric|required',
+           'image' => 'image'
         ]);
 
         $good = new Good();
         $good->name = $request->name;
         $good->price = $request->input('price');
         $good->save();
+
+        $image = $request->file('image');
+        if ($image) {
+            echo "file found";
+            $image->move('uploads', $good->id.'.jpg');
+        }
 
         return redirect('/good/show/'. $good->id);
     }

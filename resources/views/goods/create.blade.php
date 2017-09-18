@@ -14,7 +14,7 @@
                     </div>
 
                     <div class="panel-body">
-                        <form action="/good/store" method="post">
+                        <form action="/good/store" method="post" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <table class="table">
                                 <tr>
@@ -24,6 +24,10 @@
                                 <tr>
                                     <td>price</td>
                                     <td><input type="text" name="price"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><input type="file" name="image"></td>
                                 </tr>
                                 <tr>
                                     <td></td>
