@@ -3,8 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
-class AllowIfMonday
+class AdminOnly
 {
     /**
      * Handle an incoming request.
@@ -15,11 +16,12 @@ class AllowIfMonday
      */
     public function handle($request, Closure $next)
     {
-        $date = date('N');
+        $user = Auth::user();
 
-        if ($date != 1 && $date != 6) {
+        if ($user->role !== 1) {
             return redirect('/monday');
         }
+
         return $next($request);
     }
 }

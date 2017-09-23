@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/myview', 'HomeController@myview');
 
 
-Route::group(['middleware' => 'monday', 'prefix' => 'good'], function () {
+Route::group(['middleware' => [ 'auth', 'adminonly'], 'prefix' => 'good'], function () {
     Route::get('/', 'GoodController@index');
     Route::get('/show/{id}', 'GoodController@show');
     Route::get('/create', 'GoodController@create');
