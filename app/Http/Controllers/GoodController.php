@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\GoodStored;
 use App\Good;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,8 +11,8 @@ class GoodController extends Controller
 {
     public function index()
     {
-        $goods = Good::all();
 
+        $goods = Good::all();
         $data['goods'] = $goods;
         return view('goods.index', $data);
     }
@@ -46,7 +47,7 @@ class GoodController extends Controller
             echo "file found";
             $image->move('uploads', $good->id.'.jpg');
         }
-
+        event(new GoodStored($good));
         return redirect('/good/show/'. $good->id);
     }
 
@@ -82,5 +83,11 @@ class GoodController extends Controller
     public function totalgoods()
     {
         return Good::count();
+    }
+
+    public static function sendmail($good)
+    {
+        sleep(10);
+        \Log::info('Good stored: '.$good->id);
     }
 }
