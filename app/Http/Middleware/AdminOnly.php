@@ -18,7 +18,7 @@ class AdminOnly
     {
         $user = Auth::user();
 
-        if ($user->role !== 1) {
+        if (!$user->hasRole('manager')) {
             return redirect('/monday');
         }
 

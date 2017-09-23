@@ -38,6 +38,14 @@
                             </table>
                         </form>
                     </div>
+
+                    <div class="panel-body">
+                        {!! Form::open(array('url' => 'foo/bar')) !!}
+                        {!! Form::token()  !!}
+                        {!! Form::text('email', 'example@gmail.com')  !!}
+                        {!! Form::submit() !!}
+                        {!! Form::close() !!}
+                    </div>
                 </div>
             </div>
         </div>
