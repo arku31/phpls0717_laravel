@@ -78,4 +78,9 @@ class GoodController extends Controller
         Good::destroy($id);
         return redirect('/good/');
     }
+
+    public function totalgoods()
+    {
+        return Good::count();
+    }
 }

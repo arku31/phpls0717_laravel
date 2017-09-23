@@ -14,8 +14,14 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-        $response = $this->get('/');
+        $user = \Auth::loginUsingId(3);
+        $response = $this->get('/good');
 
         $response->assertStatus(200);
+
+        $user = \Auth::loginUsingId(1);
+        $response = $this->get('/good');
+
+        $response->assertStatus(302);
     }
 }
