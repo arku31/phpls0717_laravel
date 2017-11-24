@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AdminOnly;
 use App\Http\Middleware\AllowIfMonday;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -59,5 +60,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'monday' => AllowIfMonday::class,
+        'adminonly' => AdminOnly::class
     ];
 }
